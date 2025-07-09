@@ -1,0 +1,984 @@
+openapi: 3.0.3
+x-readme:
+  proxy-enabled: false
+  explorer-enabled: true
+info:
+  title: Fraud API
+  version: v1
+servers:
+  - url: https://account-api.datadome.co
+    description: Production server
+paths:
+  /v1/validate/login:
+    post:
+      tags:
+        - validate
+      summary: Validate if this login event should be allowed, denied or reviewed.
+      operationId: validate_login
+      requestBody:
+        description: Login validation payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginPayload'
+        required: true
+      responses:
+        '200':
+          description: Login validation response sent from Account Protect server to Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseLogin'
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Error response when the request is rate-limited
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/collect/login:
+    post:
+      tags:
+        - collect
+      summary: Enrich DataDome engine
+      description: When you don't need an action but just inform DataDome about an event, use this API.
+      operationId: collect_login
+      requestBody:
+        description: Login validation payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginPayload'
+        required: true
+      responses:
+        '201':
+          description: ''
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/validate/registration:
+    post:
+      tags:
+        - validate
+      summary: Validate if this registration event should be allowed, denied or reviewed.
+      operationId: validate_registration
+      requestBody:
+        description: Registration validation payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationPayload'
+        required: true
+      responses:
+        '200':
+          description: Registration validation response sent from Account Protect server to Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Error response when the request is rate-limited
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/collect/registration:
+    post:
+      tags:
+        - collect
+      summary: Enrich DataDome engine
+      description: When you don't need an action but just inform DataDome about an event, use this API.
+      operationId: collect_registration
+      requestBody:
+        description: Registration validation payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationPayload'
+        required: true
+      responses:
+        '201':
+          description: ''
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/validate/account/update:
+    post:
+      tags:
+        - validate
+      summary: Validate if this account update event should be allowed, denied or reviewed.
+      operationId: validate_account_update
+      requestBody:
+        description: Update account validation payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountUpdatePayload'
+        required: true
+      responses:
+        '200':
+          description: Update account validation response sent from Account Protect server to Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Error response when the request is rate-limited
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/collect/account/update:
+    post:
+      tags:
+        - collect
+      summary: Enrich DataDome engine
+      description: When you don't need an action but just inform DataDome about an event, use this API.
+      operationId: collect_account_update
+      requestBody:
+        description: Update account payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountUpdatePayload'
+        required: true
+      responses:
+        '201':
+          description: ''
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/validate/password/update:
+    post:
+      tags:
+        - validate
+      summary: Validate if this password update event should be allowed, denied or reviewed.
+      operationId: validate_password_update
+      requestBody:
+        description: Password update validation payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordUpdatePayload'
+        required: true
+      responses:
+        '200':
+          description: Password update response sent from Account Protect server to Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Error response when the request is rate-limited
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/collect/password/update:
+    post:
+      tags:
+        - collect
+      summary: Enrich DataDome engine
+      description: When you don't need an action but just inform DataDome about an event, use this API.
+      operationId: collect_password_update
+      requestBody:
+        description: Password update payload sent from Customer endpoint to Account Protect server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordUpdatePayload'
+        required: true
+      responses:
+        '201':
+          description: ''
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+      security:
+        - apiKeyAuth: []
+  /v1/feedback:
+    post:
+      tags:
+        - feedback
+      summary: Provide feedback about Account Protect recommendations for a specific event, account, or user.
+      description: |
+        Account Protect accepts feedbacks about its recommendations for a specific event, account, or user.
+        All submitted feedbacks contribute to refining and improving the detection algorithms for enhanced security performance.
+
+        Feedback submission is recommended when:
+        * You take the decision to block a user on your side
+        * You take the decision to allow a user on your side after Account Protect recommended to deny it
+
+        These decisions can originate from various sources, from a manual decision done by an analyst to an automated system (rule engine, report from other users, rate limit...).
+      operationId: feedback
+      requestBody:
+        description: Feedback payload to send
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackPayload'
+        required: true
+      responses:
+        '201':
+          description: The feedback has been taken into account
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Contains the feedback's ID associated to the feedback created
+                properties:
+                  feedbackId:
+                    type: string
+                    description: The feedback's ID, needed for any support request
+                    example: 019232bb-5e83-7290-9b39-7cda860e7983
+        '400':
+          description: Error response when the request is malformed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - $ref: '#/components/schemas/FeedbackError'
+        '401':
+          description: Error response when the apiKey is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Error response when the apiKey is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '415':
+          description: Content-Type is not set to application/json
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackError'
+        '500':
+          description: Internal server error (thus the feedback has not been taken into account)
+      security:
+        - apiKeyAuth: []
+components:
+  schemas:
+    Header:
+      required:
+        - addr
+        - clientIp
+        - contentType
+        - host
+        - port
+        - xRealIp
+        - xForwardedForIp
+        - acceptEncoding
+        - acceptLanguage
+        - accept
+        - method
+        - protocol
+        - serverHostname
+        - referer
+        - userAgent
+        - from
+        - request
+        - origin
+        - acceptCharset
+        - connection
+        - clientID
+      type: object
+      properties:
+        addr:
+          type: string
+          description: IP address of the originating host making the request (final client's IP address), HTTP_CLIENT_IP
+        contentType:
+          type: string
+          description: Request content-type, CONTENT_TYPE
+        host:
+          type: string
+          description: Request host, HTTP_HOST
+        port:
+          type: integer
+          description: Request port, REMOTE_PORT
+        xRealIp:
+          type: string
+          description: HTTP_X_REAL_IP
+        xForwardedForIp:
+          type: string
+          description: List of client and intermediate proxies/load-balancers IPs, HTTP_X_FORWARDED_FOR
+        acceptEncoding:
+          type: string
+          description: HTTP_ACCEPT_ENCODING
+        acceptLanguage:
+          type: string
+          description: HTTP_ACCEPT_LANGUAGE
+        accept:
+          type: string
+          description: 'Contents of the Accept: header from the current request, if there is one, HTTP_ACCEPT'
+        method:
+          type: string
+          description: HTTP method (GET/POST/OPTION), REQUEST_METHOD
+        protocol:
+          type: string
+          description: Scheme part of the Request-URI (HTTP or HTTPS), SERVER_PROTOCOL
+        serverHostname:
+          type: string
+          description: Virtual host, SERVER_NAME
+        referer:
+          type: string
+          description: HTTP_REFERER
+        userAgent:
+          type: string
+          description: HTTP_USER_AGENT
+        from:
+          type: string
+          description: HTTP_FROM
+        request:
+          type: string
+          description: Path and query part of the Request-URI, REQUEST_URI
+        origin:
+          type: string
+          description: ORIG_PATH_INFO
+        acceptCharset:
+          type: string
+          description: HTTP_ACCEPT_CHARSET
+        connection:
+          type: string
+          description: Check Keep-Alive, from request Header if present, HTTP_CONNECTION
+        clientID:
+          type: string
+          description: The value of the datadome cookie attached to the client request
+        secCHUA:
+          type: string
+          description: Client hint providing the user-agent's branding and significant version information
+        secCHUAMobile:
+          type: string
+          description: Client hint for indicating whether the browser is on a mobile device
+        secCHUAPlatform:
+          type: string
+          description: Client hint for indicating the platform or operating system on which the user agent is running
+        secCHUAArch:
+          type: string
+          description: Client hint for indicating the user-agent's underlying CPU architecture, such as ARM or x86
+        secCHUAFullVersionList:
+          type: string
+          description: Client hint for indicating the user-agent's branding and full version information
+        secCHUAModel:
+          type: string
+          description: Client hint for indicating the device model on which the browser is running
+        secCHDeviceMemory:
+          type: string
+          description: Client hint for indicating the approximate amount of available RAM on the client device
+      description: Header sent by the User to the Customer endpoint
+    Location:
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: Country code, format ISO-3166-1-alpha-2
+        country:
+          type: string
+          description: Country name
+        city:
+          type: string
+          description: City
+      description: User Location
+    Module:
+      required:
+        - requestTimeMicros
+        - name
+        - version
+      type: object
+      properties:
+        requestTimeMicros:
+          type: integer
+          description: Timestamp of the request, in microseconds
+          format: int64
+        name:
+          type: string
+          description: Module name
+        version:
+          type: string
+          description: Module version
+      description: Information about module sending this Payload
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique session identifier from your system
+          maxLength: 255
+        createdAt:
+          type: string
+          description: Creation date of the session, Format ISO 8601 YYYY-MM-DDThh:mm:ssTZD
+          format: date-time
+      description: Information about the user session
+    Authentication:
+      type: object
+      properties:
+        socialProvider:
+          type: string
+          description: Authentication social provider
+          enum:
+            - other
+            - amazon
+            - apple
+            - facebook
+            - github
+            - google
+            - linkedin
+            - microsoft
+            - twitter
+            - yahoo
+        type:
+          type: string
+          description: Authentication type
+          enum:
+            - local
+            - other
+            - social
+        mode:
+          type: string
+          description: Authentication mode
+          enum:
+            - other
+            - biometric
+            - mail
+            - mfa
+            - otp
+            - password
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique customer identifier from your system. It has to be the same for all other event sent
+          maxLength: 320
+    User:
+      allOf:
+        - $ref: '#/components/schemas/UserId'
+        - type: object
+          properties:
+            title:
+              type: string
+              description: Title of the user
+              enum:
+                - mr
+                - mrs
+                - mx
+            firstName:
+              type: string
+              description: First name of the user
+              maxLength: 50
+            lastName:
+              type: string
+              description: Last name of the user
+              maxLength: 50
+            createdAt:
+              type: string
+              description: Creation date of the user, Format ISO 8601 YYYY-MM-DDThh:mm:ssTZD
+              format: date-time
+            phone:
+              type: string
+              description: Phone of the user, E.164 format including + and a region code, for example +33978787878
+              format: phone
+              maxLength: 16
+            email:
+              type: string
+              description: Email of the user
+              format: email
+              maxLength: 320
+            displayName:
+              type: string
+              description: Display name of the user
+              maxLength: 100
+            description:
+              type: string
+              description: Description or biography of the user
+              maxLength: 320
+            pictureUrls:
+              type: array
+              maxItems: 10
+              description: Pictures of the user
+              items:
+                type: string
+                maxLength: 2048
+            externalUrls:
+              type: array
+              maxItems: 10
+              description: External URLs of the user
+              items:
+                type: string
+                maxLength: 2048
+            address:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the address
+                  maxLength: 50
+                line1:
+                  type: string
+                  description: line 1
+                  maxLength: 255
+                line2:
+                  type: string
+                  description: line 2
+                  maxLength: 255
+                city:
+                  type: string
+                  description: City
+                  maxLength: 255
+                countryCode:
+                  type: string
+                  description: Country code, Format ISO-3166-1-alpha-2
+                  maxLength: 2
+                regionCode:
+                  type: string
+                  description: Region code
+                  maxLength: 15
+                zipCode:
+                  type: string
+                  description: Zip code
+                  maxLength: 15
+              description: Address of the user
+    Payload:
+      required:
+        - account
+        - module
+        - header
+      type: object
+      properties:
+        account:
+          type: string
+          description: User account (mail address, username, alias, login, ...)
+          minLength: 1
+          maxLength: 320
+        module:
+          $ref: '#/components/schemas/Module'
+        header:
+          $ref: '#/components/schemas/Header'
+      description: Shared payload properties
+    LoginPayload:
+      allOf:
+        - $ref: '#/components/schemas/Payload'
+        - type: object
+          required:
+            - status
+          properties:
+            session:
+              $ref: '#/components/schemas/Session'
+            status:
+              type: string
+              description: User login authentication status
+              enum:
+                - failed
+                - succeeded
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: A unique customer identifier from your system. It has to be the same for all other event sent
+                  maxLength: 320
+            authentication:
+              allOf:
+                - $ref: '#/components/schemas/Authentication'
+                - type: object
+                  properties:
+                    socialProvider:
+                      example: ''
+                    type:
+                      example: other
+                    mode:
+                      example: mfa
+          description: Login payload sent from Customer endpoint to Account Protect server
+    RegistrationPayload:
+      allOf:
+        - $ref: '#/components/schemas/Payload'
+        - type: object
+          required:
+            - user
+          properties:
+            session:
+              $ref: '#/components/schemas/Session'
+            user:
+              allOf:
+                - $ref: '#/components/schemas/User'
+                - type: object
+                  required:
+                    - id
+            authentication:
+              allOf:
+                - $ref: '#/components/schemas/Authentication'
+                - type: object
+                  properties:
+                    socialProvider:
+                      example: google
+                    type:
+                      example: social
+                    mode:
+                      example: password
+          description: Registration payload sent from Customer endpoint to Account Protect server
+    AccountUpdatePayload:
+      allOf:
+        - $ref: '#/components/schemas/Payload'
+        - type: object
+          properties:
+            session:
+              $ref: '#/components/schemas/Session'
+            user:
+              allOf:
+                - $ref: '#/components/schemas/User'
+                - type: object
+                  properties:
+                    paymentMethodUpdated:
+                      type: boolean
+                      description: Payment method updated
+            authentication:
+              allOf:
+                - $ref: '#/components/schemas/Authentication'
+                - type: object
+                  properties:
+                    socialProvider:
+                      example: ''
+                    type:
+                      example: social
+                    mode:
+                      example: biometric
+          description: Update account payload sent from Customer endpoint to Account Protect server
+    PasswordUpdatePayload:
+      allOf:
+        - $ref: '#/components/schemas/Payload'
+        - type: object
+          required:
+            - user
+            - reason
+            - status
+          properties:
+            reason:
+              type: string
+              description: Reason for the password change
+              enum:
+                - forcedReset
+                - forgotPassword
+                - userUpdate
+            status:
+              type: string
+              description: Status of the password change
+              enum:
+                - attempted
+                - failed
+                - succeeded
+                - linkExpired
+            session:
+              $ref: '#/components/schemas/Session'
+            user:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: A unique customer identifier from your system. It has to be the same for all other event sent
+                  maxLength: 320
+            authentication:
+              allOf:
+                - $ref: '#/components/schemas/Authentication'
+                - type: object
+                  properties:
+                    socialProvider:
+                      example: ''
+                    type:
+                      example: social
+                    mode:
+                      example: biometric
+          description: Change password payload sent from Customer endpoint to Account Protect server
+    Response:
+      required:
+        - action
+        - eventId
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action answered to Customer endpoint
+          example: allow
+          enum:
+            - deny
+            - review
+            - challenge
+            - allow
+        reasons:
+          type: array
+          items:
+            type: string
+          description: List of models matching the event
+          example:
+            - teleportation
+            - bruteForce
+        eventId:
+          type: string
+          description: Event identifier associated to this validate event (for both registration and login)
+          example: 019441b4-7757-7ba4-a039-6d47b64ced20
+      description: Validate response from Account Protect server to Customer endpoint
+    ResponseLogin:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          required:
+            - ip
+            - location
+          properties:
+            ip:
+              type: string
+              description: User IP
+            location:
+              $ref: '#/components/schemas/Location'
+    Error:
+      required:
+        - message
+        - errors
+      type: object
+      description: Error response
+      properties:
+        message:
+          type: string
+          description: Description of the error
+          example: Parsing error
+        errors:
+          type: array
+          description: List of the fields in error
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name
+                example: status
+              error:
+                type: string
+                description: Description of the error for this field
+                example: missing required field
+    FeedbackPayload:
+      oneOf:
+        - required:
+            - eventId
+            - decision
+            - origin
+        - required:
+            - account
+            - decision
+            - origin
+        - required:
+            - userId
+            - decision
+            - origin
+      type: object
+      description: Feedback payload to provide to the feedback endpoint
+      properties:
+        eventId:
+          type: string
+          description: The eventId of the event receiving a feedback. It should match the eventId returned by fraud SDK. This field is incompatible with account or userId but one of them is mandatory.
+          example: 0192326e-495d-7dca-b946-6ad7684b0af1
+        account:
+          type: string
+          description: The account of the user receiving a feedback. It should match the field account sent in fraud SDK request. This field is incompatible with eventId or userId but one of them is mandatory.
+          example: JohnDoe
+        userId:
+          type: string
+          description: The userId of the user receiving a feedback. It should match the field userId sent in fraud SDK request. This field is incompatible with eventId or account but one of them is mandatory.
+          example: id-4759
+        decision:
+          type: string
+          description: The decision that should have been taken for the event or account (mandatory).
+          enum:
+            - allow
+            - challenge
+            - review
+            - deny
+            - delete
+          example: deny
+        decisionTime:
+          type: integer
+          description: The timestamp (EPOCH in milliseconds) when the decision was taken.
+          example: 1724934299672
+        decisionReason:
+          type: string
+          description: The description of the reasons why a decision has been taken.
+          example: This user was reported for spamming the website
+        origin:
+          type: string
+          description: The system that triggers the decision (mandatory).
+          enum:
+            - manualReview
+            - chargebacks
+            - automatedRule
+            - dashboard
+            - datadome
+            - other
+          example: automatedRule
+        originId:
+          type: string
+          description: The id that identifies the decision-maker.
+          example: Automated spam report Job#5629
+    FeedbackError:
+      required:
+        - error
+      type: object
+      description: Feedback error response
+      properties:
+        error:
+          type: string
+          description: Description of the error
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      name: x-api-key
+      in: header
+
