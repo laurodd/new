@@ -9,6 +9,10 @@ Welcome to ReadMe! :owlbert:
 
 You're on your way to building an awesome developer hub! Here's some of the things you'll want to check out.
 
+![](https://files.readme.io/169f390e71bc19305e108aa4bece253772d8fe3eb3e36e5de2155a8d91799f18-image.png)
+
+<br />
+
 # 📝 Customize your docs
 
 What you're looking at right now is what we call our **Guides**. It's a free-form place to write to your heart's content! And the best part is... you aren't alone! Your users can contribute (with your approval, don't worry!) using the **[Suggested Edits](https://docs.readme.com/main/docs/suggested-edits)** feature on every page. It's like GitHub Pull Requests, but for text!
