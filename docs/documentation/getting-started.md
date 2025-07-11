@@ -34,6 +34,6 @@ One of the best ways to know if you're nailing the dev experience is checking ou
 
 ReadMe has a *ton* of ways to make your docs the envy of any <Glossary>parliament</Glossary> (like that mouseover!). If you get stuck, [shoot us an email](mailto:support@readme.io) or use the Intercom widget on the bottom right of any page.
 
-We're excited you're here! :blue_heart: :green_heart:
+We're excited you're here! :blue_heart: :green_heart: :red_heart:
 
 ![This won't be fun to clean up...](https://owlbert.io/images/popper.gif)
