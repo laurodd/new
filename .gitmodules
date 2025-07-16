@@ -1,0 +1,3 @@
+[submodule "docs/readme"]
+	path = docs/readme
+	url = https://github.com/laurodd/readme
