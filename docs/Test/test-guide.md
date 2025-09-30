@@ -20,4 +20,4 @@ test - new edge image from git
 
 <br />
 
-<Image border={false} src="edge.png" />
+<Image border={false} src="https://raw.githubusercontent.com/laurodd/new/v1.0/docs/Test/edge.png" />
