@@ -1,7 +1,7 @@
 ---
 title: MODULE_NAME Changelog
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
